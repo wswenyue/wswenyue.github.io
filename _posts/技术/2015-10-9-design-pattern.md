@@ -1,0 +1,525 @@
+---
+layout: post
+title: 设计模式实现以及应用
+category: 技术
+tags: 设计模式
+keywords: 设计模式、设计原则
+description: 
+---
+
+
+
+##设计模式
+
+代码示例：
+
+[模板方法、工场模式、单例模式的综合应用](https://github.com/wswenyue/DesignPattern_Template_Single_Factory "模板方法、工场模式、单例模式的综合应用")
+
+[模板设计模式](https://github.com/wswenyue/DesignPattern_Template "模板设计模式")
+
+[适配器模式](https://github.com/wswenyue/DesignPattern_Adapter "适配器模式")
+
+####单例设计模式
+>单例模式构造方法：1 构造函数private 2 创建本类对象（static）  3 提供一个方法给外界用来获取本类对象
+>>懒汉式  
+>>饿汉式
+
+实现步骤：
+    
+    单例模式：
+    		1)private 类名(){}
+    		2) 
+    			懒汉式
+    				private static 类名 对象名
+    			饿汉式（线程安全）
+    				private static 类名 对象名 = new 类名（）；
+    		3）public static 类名 getInstance（）{
+    			懒汉式
+    				if（对象名==null）
+    					 对象名 = new 类名（）；
+    				return 对象名；
+    			----------------------------------------
+    			饿汉式
+    				return 对象名；
+    		}
+
+
+代码实现
+
+    class Demo08
+    {
+    	/*
+    	设计模式：单例
+    	解决问题：一个类在内存中只有一个对象
+    	1 构造方法私有化
+    	2 构造方法私有化后，就一个对象都不能创建了，只能有该类自身提供对象
+    		饿汉式：在声明类引用时实例化对象
+    		懒汉式：在获取类的方法中先判断该对象是否为空，如果为空就实例化
+    	3 提供让外界能够获得该对象的方法
+    
+    	懒汉式（线程不安全的）
+    	饿汉式（线程安全的）
+    	*/
+    	public static void main(String[] args) 
+    	{
+    		Single s1 = Single.getInstance();
+    		Single s2 = Single.getInstance();
+    		System.out.println(s1==s2); //比较的是地址
+    
+    		Single2 s3 = Single2.getInstance();
+    		Single2 s4 = Single2.getInstance();
+    		System.out.println(s3==s4);
+    	}
+    }
+    //饿汉式
+    class Single
+    {
+    	
+    		//构造方法私有化：不能在本类的外部通过new创建对象
+    		private Single(){
+    		
+    		}
+    		//定义一个本类的对象
+    		private static Single single = new Single();
+    
+    		//向外界提供可访问的方法，返回当前类的对象
+    		public static Single getInstance(){
+    			return single;
+    		}
+    }
+    
+    //懒汉式
+    class Single2 
+    {
+    	private Single2(){}
+    
+    	private static Single2 single ;
+    
+    	public static Single2 getInstance(){
+    		if(single == null)
+    			single  = new Single2();
+    		return single;
+    	}
+    
+    }
+
+---
+
+#### 简单工厂模式
+>简单工厂：工厂生产父类产品，根据传递不同的参数，返回相应的子类产品对象
+
+示例实现：
+
+    import java.util.*;
+    class  Factory  //厨房
+    {
+    	public static IEat cook(int choose){	
+    		IEat i = null;
+    		switch(choose){
+    			case 1:
+    				i = new Duck();				
+    				break;
+    			case 2:
+    				i = new Chicken();				
+    				break;
+    			case 3:
+    				i = new Fish();				
+    				break;
+    			case 4 :
+    				i = new Pig();				
+    				break;
+    			case 5:
+    				i = new Beef();
+    				break;
+    		}
+    		return i;
+    	}
+    
+    	//饭店入口
+    	public static void main(String[] args) 
+    	{
+    		Scanner input = new Scanner(System.in);
+    		System.out.println("吃啥？1 烤鸭   2 炸鸡  3 水煮鱼  4 烤乳猪 5 烤牛排");
+    		int choose = input.nextInt();
+    		IEat i = Factory.cook(choose);
+    		i.eat();
+    		System.out.println("欢迎下次光临！！！");
+    
+    	}
+    }
+    interface IEat
+    {
+    	void eat();  //吃
+    }
+    class Duck implements IEat
+    {
+    	public void eat(){
+    		System.out.println("吃烤鸭");
+    	}
+    }
+    class Chicken implements IEat
+    {
+    	public void eat(){
+    		System.out.println("吃炸鸡");
+    	}
+    }
+    
+    class Fish implements IEat
+    {
+    	public void eat(){
+    		System.out.println("吃水煮鱼");
+    	}
+    }
+    class Pig implements IEat
+    {
+    	public void eat(){
+    		System.out.println("吃烤乳猪");
+    	}
+    }
+    class Beef implements IEat
+    {
+    	public void eat(){
+    		System.out.println("吃牛排");
+    	}
+    }
+
+#### 模板设计模式
+
+算法示例：
+
+    class Demo12 
+    {
+    	/*
+    	模板模式：
+    		定义一个功能时，功能的一部分是确定的，而另一部分不确定。
+    		确定的部分需要用到不确定的部分。
+    		把不确定的部分暴露出去，让子类实现
+    
+    		abstract class  类名{
+    			//确定部分
+    			public void f(){
+    				f1();
+    			}
+    			//不确定部分
+    			public abstract void f1();
+    		}
+    	*/
+    	public static void main(String[] args) 
+    	{
+    		T t = new T();
+    		t.getTime();
+    	}
+    }
+    abstract class Test
+    {
+    	//确定部分
+    	public void getTime(){
+    		//开始时间:系统时间
+    		long start = System.currentTimeMillis();
+    		f();
+    		//结束时间
+    		long end = System.currentTimeMillis();
+    
+    		System.out.println("花费时间为:"+(end-start)+"ms");
+    
+    	}
+    
+    	//不确定部分
+    	public abstract void f();
+    }
+    
+    class T extends Test
+    {
+    		public void f(){
+    			for(int i=1;i<50000;i++){
+    				//System.out.println("");
+    			}
+    		}
+    }
+
+-----
+####装饰者模式
+
+代码示例：
+
+    package com.decorator;
+    
+    public class Demo {
+    
+    	public static void main(String[] args) {
+    		Person p1 = new Zhansan();
+    		p1.show();
+    
+    		Person p2 = new JeansDecorator(p1);
+    		p2.show();
+    
+    		Person p3 = new ShirtDecorator(p1);
+    		p3.show();
+    	}
+    }
+    
+    interface Person {
+    	void show();// 显示一个人
+    }
+    
+    abstract class DecoratorPerson implements Person {
+    	private Person person;
+    
+    	DecoratorPerson(Person person) {
+    		this.person = person;
+    	}
+    }
+    
+    class JeansDecorator extends DecoratorPerson {
+    
+    	JeansDecorator(Person person) {
+    		super(person);
+    	}
+    
+    	@Override
+    	public void show() {
+    		System.out.println("穿牛仔裤的person");
+    
+    	}
+    }
+    
+    class ShirtDecorator extends DecoratorPerson {
+    
+    	ShirtDecorator(Person person) {
+    		super(person);
+       	}
+    
+    	@Override
+    	public void show() {
+    		System.out.println("穿t恤的person");
+    
+    	}
+    
+    }
+    
+    class Zhansan implements Person {
+    
+    	@Override
+    	public void show() {
+    		System.out.println("没有任何装饰的张三");
+    
+    	}
+    
+    }
+    
+模拟实现LineNumberReader的功能：
+
+    package com.decorator;
+    
+    import java.io.FileReader;
+    import java.io.IOException;
+    import java.io.Reader;
+    
+    public class Demo {
+    	// LineNumberReader 装饰类，继承了BufferedReader
+    	public static void main(String[] args) throws IOException {
+    		FileReader fr = new FileReader("src/temp.txt");
+    		
+    		MyLineNumberReader lnr = new MyLineNumberReader(fr);
+    		String line = null;
+    		
+    		while ((line = lnr.MyReadLine()) != null) {
+    			System.out.println(lnr.getLineNumber() + ":" + line);
+    		}
+    		lnr.myClose();
+    	}
+    
+    }
+    
+    /* 封装MyLineNumber
+     * setLineNumber():设置起始行号
+     * 
+     * myReadLine（）：每次读取一行
+     * 
+     * getLineNumber（）：获得当前行号
+     */
+    class MyBufferedReader {
+    	private Reader r; // 真正读取功能的类
+    	private char[] arr = new char[512];// 相当于缓冲区
+    	private int index; // 数组下标
+    	private int count; // 统计缓冲区中字符个数
+    
+    	public MyBufferedReader(Reader r) {
+    		this.r = r;
+    	}
+    
+    	// 实现一次读取一个的功能
+    	public int myRead() throws IOException {
+    		// 缓冲区中是否有数据
+    		if (count == 0) {
+    			// 从文件中读取数据到缓冲区，返回值读取的字符数
+    			count = r.read(arr);
+    			index = 0; // 下标为0
+    		}
+    		if (count < 0) // 文件末尾
+    			return -1;
+    		// 从缓冲区中读取一个字符
+    		int num = arr[index];
+    		index++;// 下标+1
+    		// 数量-1
+    		count--;
+    		return num;
+    
+    	}
+    
+    	// 一次读取一行
+    	public String myReadLine() throws IOException {
+    		StringBuilder sb = new StringBuilder();
+    		int num;
+    		while ((num = myRead()) != -1) {
+    			if (num == '\r')
+    				continue;
+    			else if (num == '\n')
+    				return sb.toString();
+    			else
+    				sb.append((char) num);
+    		}
+    		return null;
+    	}
+    
+    	// 关闭流
+    	public void myClose() throws IOException {
+    		r.close();
+    	}
+    }
+    
+    class MyLineNumberReader extends MyBufferedReader {
+    
+    	private int lineNumber;
+    
+    	public MyLineNumberReader(Reader r) {
+    		super(r);
+    	}
+    
+    	public void setLineNumber(int lineNumber) {
+    		this.lineNumber = lineNumber;
+    	}
+    
+    	public int getLineNumber() {
+    		return this.lineNumber;
+    	}
+    
+    	// 每次读取一行，行号+1
+    	public String MyReadLine() throws IOException {
+    		++lineNumber;
+    		return super.myReadLine();
+    	}
+    
+    }
+    
+----
+
+#观察者模式
+**接口回调的实现**
+
+	package com.wenyue.observe;
+	
+	/**
+	 * 
+	 * Created by wswenyue on 2015/8/27.
+	 */
+	
+	public class Test {
+	    public static void main(String[] args) {
+	        Person p = new Person("张三");
+	        p.setPersonListener(new PersonListener() {
+	            @Override
+	            public void doEat(Event e) {
+	                Person person = e.getSouce();
+	                System.out.println(person.getName() + "吃东西...");
+	            }
+	
+	            @Override
+	            public void doReading(Event e) {
+	                Person person = e.getSouce();
+	                System.out.println(person.getName() + "正在读书...");
+	
+	            }
+	        });
+	
+	        p.read();
+	        p.eat();
+	
+	    }
+	
+	}
+	
+	/**
+	 * 观察者模式
+	 * 接口回调
+	 */
+	class Person {
+	    private String name;
+	    private PersonListener listener;
+	
+	    public Person() {
+	    }
+	
+	    public String getName() {
+	        return name;
+	    }
+	
+	    public void setName(String name) {
+	        this.name = name;
+	    }
+	
+	    public Person(String name) {
+	        this.name = name;
+	    }
+	
+	    public void setPersonListener(PersonListener listener) {
+	        this.listener = listener;
+	    }
+	
+	    public void eat() {
+	        if (listener != null) {
+	            listener.doEat(new Event(this));
+	        }
+	    }
+	
+	    public void read() {
+	        if (listener != null) {
+	            listener.doReading(new Event(this));
+	        }
+	    }
+	
+	
+	}
+	
+	/**
+	 * 监听器接口
+	 */
+	interface PersonListener {
+	    void doEat(Event e);
+	
+	    void doReading(Event e);
+	}
+	
+	/**
+	 * 事件源
+	 */
+	class Event {
+	    Person souce;
+	
+	    public Person getSouce() {
+	        return souce;
+	    }
+	
+	    public void setSouce(Person souce) {
+	        this.souce = souce;
+	    }
+	
+	    public Event() {
+	
+	    }
+	
+	    public Event(Person souce) {
+	
+	        this.souce = souce;
+	    }
+	}
