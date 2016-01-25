@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 图片加载库Picasso的介绍与使用
-category: Android
+category: 安卓
 tags: 第三方库
 keywords: Picasso
 description: 
