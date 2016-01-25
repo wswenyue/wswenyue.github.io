@@ -36,7 +36,7 @@ $ git remote rm
 
 - 查看远程仓库分支与本地分支的一些信息
 
-```shell
+```bash
 $ git remote show origin
 
 * remote origin
