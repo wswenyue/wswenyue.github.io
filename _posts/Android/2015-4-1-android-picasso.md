@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 图片加载库Picasso的介绍与使用
-category: 安卓
+category: Android
 tags: 第三方库
 keywords: Picasso
 description: 
@@ -38,7 +38,7 @@ Gradle：
 
 Maven：
 
-```maven
+```java
 <dependency>
   <groupId>com.squareup.picasso</groupId>
   <artifactId>picasso</artifactId>
