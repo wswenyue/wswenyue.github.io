@@ -17,6 +17,7 @@ description:
 > 说明：缓冲流是处理流的一种,建立在相应的节点流之上，对读写的数据提供了缓冲的功能，提高了读写的效率，还增加了一些新的方法
 
 **注意**：
+
 - 1、对于缓冲输出流，写出的数据会先缓存在内存缓冲区中，关闭此流前要用flush()方法将缓存区的数据立刻写出
 - 2、关闭过滤流时，会自动关闭过滤流所包装的所有底层流
 
@@ -65,24 +66,29 @@ static修饰的成员变量也不会被序列化
 分类：
 
 - **InputStreamReader**类
+
 ```
 1）是Reader的子类，将输入的字节流变为字符流，即将一个字节流的输入对象变为字符流的输入对象
 2）InputStreamReader需要和InputStream“套接”，它可以将字节流中读入的字节解码成字符
 ```
 
 - **OutputStreamWriter**类
+
 ```
 1）是Writer的子类，将输出的字符流变为字节流，即将一个字符流的输出对象变为字节流的输出对象
 2）OutputStreamWriter需要和OutputStream“套接”，它可以将要写入字节流的字符编码成字节
 ```
 
 转换过程：
+
 - 写入数据
+
 ```	
 程序--->>字符数据--->>字符流--->>OutputStreamWriter--->>字节流--->>文件
 ```
 
 - 读出数据
+
 ```
 程序<<---字符数据<<---字符流<<----InputStreamReader<<---字节流<<---文件
 ```
@@ -110,7 +116,7 @@ writeInt(int i)
 writeUTF(String s) 写入UTF-8编码的字符串
 ```
 
-#### 打 印流
+#### 打印流
 
 > 说明：向控制台输出数据
 
@@ -119,6 +125,7 @@ PrintStream类：字节输出流
 PrintWriter类：字符输出流
 
 打印流示例（**注意：write写入的是字节**）：
+
 ```java
 PrintStream ps = new PrintStream("src/print.txt");
 ps.write(355);// 字节 00000000 00000000 00000001 01100011
@@ -129,12 +136,14 @@ ps.close();
 ```
 
 **注意**
+
 ```java
 System.out就是PrintStream的一个实例
 PrintStream和PrintWriter的输出操作不会抛出异常
 ```
 
 构造方法:
+    
 ```java
 PrintStream(OutputStream out)
 PrintStream(OutputStream out, boolean autoFlush)
