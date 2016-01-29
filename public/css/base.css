@@ -141,6 +141,9 @@ table:hover {
   border: 1px solid rgba(0, 179, 179, 0.333333);
   box-shadow: 0 0 8px rgba(0, 179, 179, 0.166667);
 }
+.nav-left>tbody>tr>td{
+  border:0;
+}
 
 table thead tr th {
   vertical-align: bottom;
