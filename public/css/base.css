@@ -141,6 +141,7 @@ table:hover {
   border: 1px solid rgba(0, 179, 179, 0.333333);
   box-shadow: 0 0 8px rgba(0, 179, 179, 0.166667);
 }
+/** 这里这个是用来处理左下角链接标签的 */
 .nav-left>tbody>tr>td{
   border:0;
 }
