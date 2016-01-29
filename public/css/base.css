@@ -146,6 +146,18 @@ table {
   box-shadow: 0 0 3px rgba(0, 179, 179, 0.166667);
 }
 
+table thead > tr {
+  background-color: rgba(230, 230, 230, 0.333333);
+}
+
+table tbody > tr:nth-child(2n+1) {
+  background-color: rgba(0, 179, 179, 0.166667);
+}
+
+table tbody tr {
+  background-color: rgba(230, 230, 230, 0.166667);
+}
+
 /*
 table:hover {
   border: 1px solid rgba(0, 179, 179, 0.333333);
