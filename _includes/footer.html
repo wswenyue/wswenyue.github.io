@@ -35,6 +35,16 @@
   		showNavArrows : true
     });
 	
+  $(function(){
+     $("#code").mouseover(
+      function(event){
+       event = event || window.event; 
+       var x = event.offsetX || event.originalEvent.layerX;
+       var y = event.offsetY || event.originalEvent.layerY;
+       alert("x:"+x+"; y:"+y);
+      }
+     );
+   });
 
 
 </script>
