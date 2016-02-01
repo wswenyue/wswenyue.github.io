@@ -187,3 +187,9 @@ table tbody tr {
   top:30%; 
   background-color: rgba(0, 179, 179, 0.333333);
 }
+
+#code_pic {
+  width: 110px;
+  height: 110px;
+  background-color: rgba(0, 179, 100, 0.333333);
+}
