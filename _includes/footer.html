@@ -13,12 +13,24 @@
 <script src="/public/js/jquery.pjax.js"></script>
 <script src="/public/js/prettify/prettify.js"></script>
 <script src="/public/js/base.js"></script>
-<script src="/public/js/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<script src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/public/js/jquery.fancybox.pack.js"></script>
 <!--
 <script src="/public/js/jquery.scrollUp.js"></script>
 -->
 <script>
     $('a[href="#{{ site.active }}"]').tab('show');
+
+	/*图片点击漂浮效果，使用fancybox */
+
+	// 给图片添加链接
+	$(document).ready(function() {
+	  $("p img").each(function() {
+	    var strA = "<a id='myfancybox' href='" + this.src + "'></a>";
+	    $(this).wrapAll(strA);
+	  });
+	});
 
     // fancybox
 	$("#myfancybox").fancybox({
