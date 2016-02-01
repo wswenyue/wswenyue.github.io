@@ -27,19 +27,17 @@
 	$("#myfancybox").fancybox({
 	  openEffect    : 'elastic',
 	  closeEffect   : 'elastic',
-	  nextClick		: true,
+	  helpers	: {
+			title	: {
+				type: 'outside'
+			},
+			thumbs	: {
+				width	: 50,
+				height	: 50
+			}
+		}
 	});
 
-	$("#myfancybox").fancybox({
-		  helpers:  {
-	        title : {
-	            type : 'inside'
-	        },
-	        overlay : {
-	            showEarly : false
-	        }
-	    }
-    });
 
 
 </script>
