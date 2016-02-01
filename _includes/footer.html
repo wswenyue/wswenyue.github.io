@@ -22,7 +22,7 @@
 <script type="text/javascript" src="http://7xj2yv.com1.z0.glb.clouddn.com/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <script type="text/javascript" src="http://7xj2yv.com1.z0.glb.clouddn.com/jquery.fancybox-buttons.js?v=1.0.5"></script>
 
-<script type="text/javascript" src="http://7xj2yv.com1.z0.glb.clouddn.com/jquery.qrcode.js"></script>
+<script type="text/javascript" src="http://7xj2yv.com1.z0.glb.clouddn.com/jquery.qrcode.min.js"></script>
 
 <!--
 <script src="/public/js/jquery.scrollUp.js"></script>
@@ -47,7 +47,7 @@
     $("#code_pic").qrcode({
         width: 150,
         height: 150,
-        text: "http:{{ site.url }}{{ page.url }}"
+        text: "{{ site.url }}{{ page.url }}"
       });
 
 </script>
