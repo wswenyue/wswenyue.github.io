@@ -178,3 +178,12 @@ table tbody > tr:nth-child(2n+1) {
 table tbody tr {
   background-color: rgba(230, 230, 230, 0.166667);
 }
+
+/*二维码部分*/
+#code {
+  width:116px; height:183px;
+  position:fixed;
+  right:0;
+  top:50%; 
+  background-color: rgba(230, 230, 230, 0.166667);
+}
