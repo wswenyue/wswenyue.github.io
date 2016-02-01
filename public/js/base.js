@@ -96,18 +96,13 @@ function contentEffects(){
   }
 }
 
-/*图片点击漂浮效果，使用fancybox */
+  /*图片点击漂浮效果，使用fancybox */
 
-// 给图片添加链接
-$(document).ready(function() {
-  $("p img").each(function() {
-    var strA = "<a id='myfancybox' href='" + this.src + "'></a>";
-    $(this).wrapAll(strA);
+  // 给图片添加链接
+  $(document).ready(function() {
+    $("p img").each(function() {
+      var strA = "<a id='myfancybox' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+    });
   });
-});
 
-// fancybox
-$("#myfancybox").fancybox({
-  openEffect    : 'elastic',
-  closeEffect   : 'elastic',
-});
