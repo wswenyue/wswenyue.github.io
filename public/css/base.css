@@ -198,4 +198,5 @@ table tbody tr {
   height: 110px;
   margin-left: -55px;
   margin-top: -55px;
+  border: 4px solid rgba(230, 230, 230, 0.166667);
 }
