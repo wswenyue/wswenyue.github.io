@@ -35,15 +35,10 @@
   		showNavArrows : true
     });
 	
-
-
-    $(function () {
-      $("#code").mouseover(function () {
-          $(this).hide("fast");
-      });
-      $("#code").mouseleave(function () {
-          $(this).show("fast");
-      });
+   $('#code').hover(function(){
+      $(this).hide();
+      },function(){
+      $(this).show();
     });
 
 
