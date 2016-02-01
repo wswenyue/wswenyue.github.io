@@ -104,13 +104,10 @@ $(document).ready(function() {
     var strA = "<a id='myfancybox' href='" + this.src + "'></a>";
     $(this).wrapAll(strA);
   });
-}
+});
 
 // fancybox
 $("#myfancybox").fancybox({
   openEffect    : 'elastic',
   closeEffect   : 'elastic',
 });
-
-);
-
