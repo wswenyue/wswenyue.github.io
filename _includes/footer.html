@@ -36,12 +36,15 @@
     });
 	
 
-  $(function(){
-      $('#code').hover(function(){
-      function(){$(this).hide()},
-      function(){$(this).show()}
-      })
-  });
+
+    $(function () {
+      $("#code").mouseover(function () {
+          $(this).hide("fast");
+      });
+      $("#code").mouseleave(function () {
+          $(this).show("fast");
+      });
+    });
 
 
 </script>
