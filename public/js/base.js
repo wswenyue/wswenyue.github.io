@@ -101,7 +101,7 @@ function contentEffects(){
   // 给图片添加链接
   $(document).ready(function() {
     $("p img").each(function() {
-      var strA = "<a id='myfancybox' href='" + this.src + "' title='" + this.alt + "'></a>";
+      var strA = "<a id='myfancybox' data-fancybox-group='gallery' href='" + this.src + "' title='" + this.alt + "'></a>";
       $(this).wrapAll(strA);
     });
   });
