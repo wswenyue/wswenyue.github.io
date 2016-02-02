@@ -132,6 +132,7 @@ table {
   max-width: 95%;
   margin-left: 5%;
   margin-bottom: 20px;
+  overflow: auto;
   border-collapse: collapse;
   border: 1px solid rgba(0, 179, 179, 0.333333);
   box-shadow: 0 0 3px rgba(0, 179, 179, 0.166667);
