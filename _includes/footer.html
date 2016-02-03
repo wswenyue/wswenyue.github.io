@@ -1,12 +1,12 @@
 <div style="position:fixed;right:15px;top:62px;">
-  <button id="content_btn" class="btn btn-primary" style="width:43px; height:34px;">
-    <i class="fa fa-lg fa-plus"></i>
-  </button>
+    <button id="content_btn" class="btn btn-primary" style="width:43px; height:34px;">
+        <i class="fa fa-lg fa-plus"></i>
+    </button>
 </div>
 <div style="position:fixed;right:15px;top:20px;">
-  <button id="nav_btn" class="btn btn-primary">
-    <i class="fa fa-lg fa-navicon"></i>
-  </button>
+    <button id="nav_btn" class="btn btn-primary">
+        <i class="fa fa-lg fa-navicon"></i>
+    </button>
 </div>
 <script type="text/javascript" src="/public/js/jquery.js"></script>
 <script type="text/javascript" src="/public/js/bootstrap.js"></script>
@@ -28,19 +28,20 @@
 <script src="/public/js/jquery.scrollUp.js"></script>
 -->
 <script>
-   /* $('a[href="#{{ site.active }}"]').tab('show');*/
-   $("#{{ site.active }\}").tab('show');
+    /* $('a[href="#{{ site.active }}"]').tab('show');*/
+    var active = "{{site.active }}";
+    $('#' + active).tab('show');
     // fancybox
     $(".myfancybox").fancybox({
-    	openEffect    : 'elastic',
-  		closeEffect   : 'elastic',
-  		showNavArrows : true
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        showNavArrows: true
     });
-	
-   $('#code').hover(function(){
-      $('#code_pic').show("slow");
-      },function(){
-      $('#code_pic').hide("slow");
+
+    $('#code').hover(function () {
+        $('#code_pic').show("slow");
+    }, function () {
+        $('#code_pic').hide("slow");
     });
 
 
@@ -48,9 +49,22 @@
         width: 90,
         height: 90,
         text: "{{ site.url }}{{ page.url }}"
-      });
+    });
 
-    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {"viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16"},
+        "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 
 
 </script>
