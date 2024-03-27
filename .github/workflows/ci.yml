@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - docs
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # 如果你文档需要 Git 子模块，取消注释下一行
+          # submodules: true
+
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: dep install
+        run: npm install
+
+      - name: build web
+        shell: bash
+        run: |
+          npm run docs:build
+          echo 'wswenyue.vip' > src/.vuepress/dist/CNAME
+
+#      - name: deploy blog
+#        shell: bash
+#        run: |
+#          cd src/.vuepress/dist
+#          echo 'wswenyue.vip' > CNAME
+#          git init .
+#          git config user.name github-actions[bot]
+#          git config user.email github-actions[bot]@users.noreply.github.com
+#          git add -A
+#          git commit -m 'deploy'
+
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: master
+          FOLDER: src/.vuepress/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
